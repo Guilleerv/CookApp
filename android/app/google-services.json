@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1057740475655",
+    "project_id": "flutter-cook-b3162",
+    "storage_bucket": "flutter-cook-b3162.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057740475655:android:130a7c63ae37c6018689a2",
+        "android_client_info": {
+          "package_name": "com.xulitos.cookapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfF0T4HJ8L0EjCbbcSgL-XYFHq_s9BUPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
