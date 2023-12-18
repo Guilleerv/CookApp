@@ -40,7 +40,7 @@ class _ViewRecetasState extends State<ViewRecetas> {
                 Map<String, dynamic> receta = recetas[index];
 
                 return ListTile(
-                  leading: receta['imagen'] != null
+                  leading: receta['foto'] != null
                       ? CircleAvatar(
                           backgroundImage: NetworkImage(receta['foto']),
                         )
@@ -49,8 +49,7 @@ class _ViewRecetasState extends State<ViewRecetas> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Ingredientes: ${receta['ingredientes']}"),
-                      Text("Instrucciones: ${receta['pasos']}"),
+                      Text("Descripcion: ${receta['descripcion']}"),
                     ],
                   ),
                 );

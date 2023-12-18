@@ -1,8 +1,8 @@
+import 'package:cookapp/screens/creation_recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart'; // Asegúrate de tener este archivo con las opciones de Firebase
 import 'screens/carousel_screen.dart';
-import 'screens/add.recipe_screen.dart';
 import 'screens/view_screnn.dart';
 
 void main() async {
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         controller: _pageController,
         children: [
-          AddRecipeScreen(),
+          RecipesCreation(),
           Container(
             child: Center(
               child: Text('Crea y visualiza las mejores recetas'),
