@@ -103,7 +103,6 @@ class _RecipesCreationState extends State<RecipesCreation> {
             IngredientsPage(ingredientControllers: _ingredientControllers),
             StepsPage(
               stepDescriptionControllers: _stepDescriptionControllers,
-              onImagePicked: _pickImage,
             ),
           ],
           onPageChanged: (index) {
@@ -117,6 +116,11 @@ class _RecipesCreationState extends State<RecipesCreation> {
           onTap: (index) {
             _pageController.jumpToPage(index);
           },
+          backgroundColor: Colors.green,
+          selectedItemColor:
+              Colors.black, // Color del ícono y label seleccionados
+          unselectedItemColor:
+              Colors.grey, // Color del ícono y label no seleccionados
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.photo),
@@ -131,7 +135,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
               label: 'Ingredientes',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.list), // Color del ícono
               label: 'Pasos',
             ),
           ],
@@ -148,7 +152,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
               ),
             );
           },
-          child: Text('Agregar Receta'),
+          child: const Text('Guardar'),
         ),
       ),
     );
@@ -165,13 +169,12 @@ class PhotoPage extends StatefulWidget {
 }
 
 class _PhotoPageState extends State<PhotoPage> {
-  final ImagePicker _picker = ImagePicker();
   File? _image;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Colors.grey[200], // Cambiado a un color gris claro
       height: 200,
       alignment: Alignment.center,
       child: Column(
@@ -181,10 +184,12 @@ class _PhotoPageState extends State<PhotoPage> {
               ? kIsWeb
                   ? Image.network(_image!.path, height: 100, width: 100)
                   : Image.file(_image!, height: 100, width: 100)
-              : Text('Selecciona una foto'),
+              : const Text('Selecciona una foto',
+                  style: TextStyle(
+                      color: Colors.black)), // Añadido un estilo para el texto
           ElevatedButton(
             onPressed: widget.onImagePicked,
-            child: Text('Seleccionar Foto'),
+            child: const Text('Seleccionar Foto'),
           ),
         ],
       ),
@@ -208,70 +213,71 @@ class RecipeDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _SectionTitle('Detalles de la Receta'),
-          SizedBox(height: 16),
-          TextField(
-            controller: titleController,
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-              labelText: 'Título',
-              labelStyle: TextStyle(color: Colors.black),
-              hintText: 'Ej: Lasaña Boloñesa.',
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const _SectionTitle('Detalles de la Receta'),
+            const SizedBox(height: 16),
+            TextField(
+              controller: titleController,
+              style: const TextStyle(color: Colors.black),
+              decoration: const InputDecoration(
+                labelText: 'Título',
+                labelStyle: TextStyle(color: Colors.black),
+                hintText: 'Ej: Lasaña Boloñesa.',
+              ),
             ),
-          ),
-          SizedBox(height: 16),
-          TextField(
-            controller: descriptionController,
-            style: TextStyle(color: Colors.black),
-            maxLines: 4,
-            decoration: InputDecoration(
-              labelText: 'Descripción',
-              labelStyle: TextStyle(color: Colors.black),
-              hintText:
-                  'Ej: Receta de rica lasaña boloñesa que me enseñó a hacer mi madre.',
+            const SizedBox(height: 16),
+            TextField(
+              controller: descriptionController,
+              style: const TextStyle(color: Colors.black),
+              maxLines: 4,
+              decoration: const InputDecoration(
+                labelText: 'Descripción',
+                labelStyle: TextStyle(color: Colors.black),
+                hintText:
+                    'Ej: Receta de rica lasaña boloñesa que me enseñó a hacer mi madre.',
+              ),
             ),
-          ),
-          SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: peopleController,
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    labelText: 'Cantidad de Personas',
-                    labelStyle: TextStyle(color: Colors.black),
-                    hintText: 'Ej: 4-6 personas',
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: peopleController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
+                      labelText: 'Cantidad de Personas',
+                      labelStyle: TextStyle(color: Colors.black),
+                      hintText: 'Ej: 4-6 personas',
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(width: 16),
-              Expanded(
-                child: TextField(
-                  controller: timeController,
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    labelText: 'Tiempo de Elaboración',
-                    labelStyle: TextStyle(color: Colors.black),
-                    hintText: 'Ej: 1 hora 15 minutos',
+                const SizedBox(width: 16),
+                Expanded(
+                  child: TextField(
+                    controller: timeController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
+                      labelText: 'Tiempo de Elaboración',
+                      labelStyle: TextStyle(color: Colors.black),
+                      hintText: 'Ej: 1 hora 15 minutos',
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-// Página para los ingredientes
 class IngredientsPage extends StatefulWidget {
   final List<TextEditingController> ingredientControllers;
 
@@ -285,72 +291,72 @@ class IngredientsPage extends StatefulWidget {
 class _IngredientsPageState extends State<IngredientsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(16.0),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _SectionTitle('Ingredientes'),
-            SizedBox(height: 16),
-            for (int i = 0; i < widget.ingredientControllers.length; i++)
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: widget.ingredientControllers[i],
-                          style: TextStyle(color: Colors.black),
-                          decoration: InputDecoration(
-                            labelText: 'Ingrediente ${i + 1}',
-                            labelStyle: TextStyle(color: Colors.black),
-                            hintText: 'Ej: 500 grs de carne',
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.grey[200], // Cambiado a un color gris claro
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _SectionTitle('Ingredientes',
+                  textColor: Colors.black), // Añadido el color del texto
+              const SizedBox(height: 16),
+              for (int i = 0; i < widget.ingredientControllers.length; i++)
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: widget.ingredientControllers[i],
+                            style: const TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                              labelText: 'Ingrediente ${i + 1}',
+                              labelStyle: const TextStyle(color: Colors.black),
+                              hintText: 'Ej: 500 grs de carne',
+                            ),
                           ),
                         ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.delete),
-                        color: Colors.black,
-                        onPressed: () {
-                          setState(() {
-                            widget.ingredientControllers.removeAt(i);
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                ],
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          color: Colors.black,
+                          onPressed: () {
+                            setState(() {
+                              widget.ingredientControllers.removeAt(i);
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    widget.ingredientControllers.add(TextEditingController());
+                  });
+                },
+                child: const Text('Agregar Ingrediente'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.grey[300],
+                ),
               ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  widget.ingredientControllers.add(TextEditingController());
-                });
-              },
-              child: Text('Agregar Ingrediente'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.grey[300],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-// Página para los pasos
 class StepsPage extends StatefulWidget {
   final List<TextEditingController> stepDescriptionControllers;
-  final VoidCallback onImagePicked;
 
   const StepsPage({
     Key? key,
     required this.stepDescriptionControllers,
-    required this.onImagePicked,
   }) : super(key: key);
 
   @override
@@ -360,71 +366,68 @@ class StepsPage extends StatefulWidget {
 class _StepsPageState extends State<StepsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(16.0),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _SectionTitle('Pasos a Seguir'),
-            SizedBox(height: 16),
-            for (int i = 0; i < widget.stepDescriptionControllers.length; i++)
-              Column(
-                children: [
-                  TextField(
-                    controller: widget.stepDescriptionControllers[i],
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      labelText: 'Paso ${i + 1}',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.grey[200],
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _SectionTitle('Pasos a Seguir', textColor: Colors.black),
+              const SizedBox(height: 16),
+              for (int i = 0; i < widget.stepDescriptionControllers.length; i++)
+                Column(
+                  children: [
+                    TextField(
+                      controller: widget.stepDescriptionControllers[i],
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        labelText: 'Paso ${i + 1}',
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                        ),
+                        hintText:
+                            'Ej: En una olla grande calentar el Sofrito Gourmet junto a la zanahoria, el apio y tocino (opcional).',
                       ),
-                      hintText:
-                          'Ej: En una olla grande calentar el Sofrito Gourmet junto a la zanahoria, el apio y tocino (opcional).',
                     ),
-                  ),
-                  // Aquí puedes agregar el botón para seleccionar una imagen asociada al paso
-                  ElevatedButton(
-                    onPressed: widget.onImagePicked,
-                    child: Text('Seleccionar Imagen para el Paso ${i + 1}'),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.delete),
-                    color: Colors.black,
-                    onPressed: () {
-                      setState(() {
-                        widget.stepDescriptionControllers.removeAt(i);
-                      });
-                    },
-                  ),
-                  SizedBox(height: 16),
-                ],
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      color: Colors.black,
+                      onPressed: () {
+                        setState(() {
+                          widget.stepDescriptionControllers.removeAt(i);
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+                ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    widget.stepDescriptionControllers
+                        .add(TextEditingController());
+                  });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey[300],
+                ),
+                child: const Text('Agregar Paso'),
               ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  widget.stepDescriptionControllers
-                      .add(TextEditingController());
-                });
-              },
-              child: Text('Agregar Paso'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.grey[300],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-// Widget para el título de una sección
 class _SectionTitle extends StatelessWidget {
   final String title;
+  final Color textColor;
 
-  const _SectionTitle(this.title);
+  const _SectionTitle(this.title, {this.textColor = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -433,7 +436,7 @@ class _SectionTitle extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          color: Colors.black,
+          color: textColor,
           fontSize: 20,
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.underline,
@@ -449,6 +452,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RecipesCreation();
+    return const RecipesCreation();
   }
 }

@@ -51,40 +51,40 @@ class _CarouselScreenState extends State<CarouselScreen> {
         title: Text('Bienvenido a cookapp'),
         backgroundColor: Colors.orange,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.4,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 2),
-            ),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                if (_currentPage == 1)
-                  Image.asset(
-                    'assets/images/welcome_image.png',
-                    fit: BoxFit.cover,
-                  )
-                else if (_currentPage == 2)
-                  Image.asset(
-                    'assets/images/welcome_image2.png',
-                    fit: BoxFit.cover,
-                  )
-                else if (_currentPage == 3)
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: Image.asset(
-                      'assets/images/welcome_image3.png',
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 2),
+              ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  if (_currentPage == 1)
+                    Image.asset(
+                      'assets/images/welcome_image.png',
                       fit: BoxFit.cover,
+                    )
+                  else if (_currentPage == 2)
+                    Image.asset(
+                      'assets/images/welcome_image2.png',
+                      fit: BoxFit.cover,
+                    )
+                  else if (_currentPage == 3)
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: Image.asset(
+                        'assets/images/welcome_image3.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Padding(
+            Padding(
               padding: EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -206,8 +206,8 @@ class _CarouselScreenState extends State<CarouselScreen> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

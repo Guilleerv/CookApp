@@ -1,3 +1,4 @@
+import 'package:cookapp/widgets/detallesreceta.dart';
 import 'package:flutter/material.dart';
 import 'package:cookapp/services/firebase_service.dart';
 
@@ -33,24 +34,34 @@ class _ViewRecetasState extends State<ViewRecetas> {
                 (snapshot.data as List<dynamic>)
                     .map((dynamic item) => item as Map<String, dynamic>)
                     .toList();
-
             return ListView.builder(
               itemCount: recetas.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> receta = recetas[index];
 
-                return ListTile(
-                  leading: receta['foto'] != null
-                      ? CircleAvatar(
-                          backgroundImage: NetworkImage(receta['foto']),
-                        )
-                      : null,
-                  title: Text(receta['nombre']),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Descripcion: ${receta['descripcion']}"),
-                    ],
+                return GestureDetector(
+                  onTap: () {
+                    // Navegar a la página de detalles con la receta seleccionada
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetallesReceta(receta: receta),
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    leading: receta['foto'] != null
+                        ? CircleAvatar(
+                            backgroundImage: NetworkImage(receta['foto']),
+                          )
+                        : null,
+                    title: Text(receta['nombre']),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Descripcion: ${receta['descripcion']}"),
+                      ],
+                    ),
                   ),
                 );
               },
