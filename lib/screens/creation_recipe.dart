@@ -36,6 +36,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
     TextEditingController()
   ];
   File? _image;
+  bool _isButtonDisabled = false;
 
   // Método para seleccionar una imagen
   Future<void> _pickImage() async {
@@ -75,6 +76,12 @@ class _RecipesCreationState extends State<RecipesCreation> {
           .toList(),
       imageUrl: await uploadImage(_image!),
     );
+    _titleController.clear();
+    _descriptionController.clear();
+    _peopleController.clear();
+    _timeController.clear();
+    _ingredientControllers.clear();
+    _stepDescriptionControllers.clear();
   }
 
   @override
@@ -140,20 +147,25 @@ class _RecipesCreationState extends State<RecipesCreation> {
             ),
           ],
         ),
-        floatingActionButton: ElevatedButton(
-          onPressed: () async {
-            await _addRecipe();
-
-            // Navegar a la vista de recetas (ViewRecetas) después de agregar la receta
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ViewRecetas(),
-              ),
-            );
-          },
-          child: const Text('Guardar'),
-        ),
+        floatingActionButton: _currentPageIndex == 3
+            ? ElevatedButton(
+                onPressed: _isButtonDisabled
+                    ? null
+                    : () async {
+                        setState(() {
+                          _isButtonDisabled = true;
+                        });
+                        await _addRecipe();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ViewRecetas(),
+                          ),
+                        );
+                      },
+                child: const Text('Guardar'),
+              )
+            : null, // El botón no se muestra si no estás en la página de pasos.
       ),
     );
   }
