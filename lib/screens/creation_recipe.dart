@@ -83,6 +83,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'CookApp',
       theme: ThemeData(
         primarySwatch: Colors.blue,
