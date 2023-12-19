@@ -16,18 +16,13 @@ class DetallesReceta extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Descripción, Personas y Tiempo
             Text("Descripción: ${receta['descripcion']}"),
             Text("Personas: ${receta['personas']}"),
             Text("Tiempo: ${receta['tiempo']}"),
-            SizedBox(height: 16),
-
-            // Lista de Ingredientes
+            const SizedBox(height: 16),
             _SectionTitle('Ingredientes'),
             _buildIngredientesList(receta['ingredientes']),
-            SizedBox(height: 16),
-
-            // Lista de Pasos
+            const SizedBox(height: 16),
             _SectionTitle('Pasos a Seguir'),
             _buildPasosList(receta['pasos']),
           ],
@@ -36,7 +31,6 @@ class DetallesReceta extends StatelessWidget {
     );
   }
 
-  // Método para construir la lista de ingredientes
   Widget _buildIngredientesList(List<dynamic> ingredientes) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +39,6 @@ class DetallesReceta extends StatelessWidget {
     );
   }
 
-  // Método para construir la lista de pasos
   Widget _buildPasosList(List<dynamic> pasos) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +51,7 @@ class DetallesReceta extends StatelessWidget {
                   children: [
                     Text('Paso ${index + 1}:'),
                     Text('- $paso'),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                   ],
                 ),
               ))
@@ -67,13 +60,13 @@ class DetallesReceta extends StatelessWidget {
     );
   }
 
-  // Widget para el título de una sección
+  // ignore: non_constant_identifier_names
   Widget _SectionTitle(String title) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.underline,

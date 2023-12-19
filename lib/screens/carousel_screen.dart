@@ -6,6 +6,7 @@ class CarouselScreen extends StatefulWidget {
   const CarouselScreen({Key? key, required this.onFinish}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CarouselScreenState createState() => _CarouselScreenState();
 }
 
@@ -29,12 +30,12 @@ class _CarouselScreenState extends State<CarouselScreen> {
   }
 
   void _finish() {
-    widget.onFinish(); // Callback para manejar el final del carrusel
+    widget.onFinish();
   }
 
   Widget _buildIndicator(int pageNumber) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4.0),
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
       width: 10.0,
       height: 10.0,
       decoration: BoxDecoration(
@@ -48,7 +49,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bienvenido a cookapp'),
+        title: const Text('Bienvenido a cookapp'),
         backgroundColor: Colors.orange,
       ),
       body: SingleChildScrollView(
@@ -74,7 +75,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                       fit: BoxFit.cover,
                     )
                   else if (_currentPage == 3)
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Image.asset(
                         'assets/images/welcome_image3.png',
@@ -85,13 +86,13 @@ class _CarouselScreenState extends State<CarouselScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (_currentPage == 1)
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -107,7 +108,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
                       ],
                     ),
                   if (_currentPage == 2)
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -135,37 +136,37 @@ class _CarouselScreenState extends State<CarouselScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           '¡Estás a punto de comenzar tu propia ruta gastronómica!',
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 10),
-                        Text(
+                        const SizedBox(height: 10),
+                        const Text(
                           'Solo presiona el botón para empezar.',
                           style: TextStyle(fontSize: 18),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ElevatedButton(
                               onPressed: _previousPage,
-                              child: Text('Atrás'),
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.orange,
+                                backgroundColor: Colors.orange,
                               ),
+                              child: const Text('Atrás'),
                             ),
                             ElevatedButton(
                               onPressed: _finish,
-                              child: Text('Finalizar'),
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.orange,
+                                backgroundColor: Colors.orange,
                               ),
+                              child: const Text('Finalizar'),
                             ),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -174,28 +175,28 @@ class _CarouselScreenState extends State<CarouselScreen> {
                         ),
                       ],
                     ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   if (_currentPage < 3)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
                           onPressed: _previousPage,
-                          child: Text('Atrás'),
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.orange,
+                            backgroundColor: Colors.orange,
                           ),
+                          child: const Text('Atrás'),
                         ),
                         ElevatedButton(
                           onPressed: _nextPage,
-                          child: Text('Siguiente'),
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.orange,
+                            backgroundColor: Colors.orange,
                           ),
+                          child: const Text('Siguiente'),
                         ),
                       ],
                     ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   if (_currentPage != 3)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -1,7 +1,7 @@
 import 'package:cookapp/screens/creation_recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart'; // Asegúrate de tener este archivo con las opciones de Firebase
+import 'firebase_options.dart';
 import 'screens/carousel_screen.dart';
 import 'screens/view_screnn.dart';
 
@@ -10,7 +10,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CarouselWrapper(),
+      home: const CarouselWrapper(),
     );
   }
 }
@@ -40,7 +40,7 @@ class CarouselWrapper extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => MyHomePage(),
+              builder: (context) => const MyHomePage(),
             ),
           );
         },
@@ -53,6 +53,7 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -82,12 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         controller: _pageController,
-        children: [
+        children: const [
           RecipesCreation(),
-          Container(
-            child: Center(
-              child: Text('Crea y visualiza las mejores recetas'),
-            ),
+          Center(
+            child: Text('Crea y visualiza las mejores recetas'),
           ),
           ViewRecetas(),
         ],

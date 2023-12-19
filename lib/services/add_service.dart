@@ -22,8 +22,7 @@ class RecipeService {
         'pasos': steps,
         'foto': imageUrl,
       });
-    } catch (e) {
-      print('Error al agregar receta: $e');
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 }

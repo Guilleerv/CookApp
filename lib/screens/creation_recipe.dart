@@ -1,4 +1,3 @@
-// Importa las librerías necesarias
 import 'package:cookapp/screens/view_screnn.dart';
 import 'package:cookapp/services/add_service.dart';
 import 'package:flutter/material.dart';
@@ -7,20 +6,18 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:cookapp/services/upload_image.dart';
 
-// La clase principal que inicia la aplicación
 void main() {
   runApp(const MyApp());
 }
 
-// Widget principal de la aplicación
 class RecipesCreation extends StatefulWidget {
   const RecipesCreation({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _RecipesCreationState createState() => _RecipesCreationState();
 }
 
-// Estado del widget principal
 class _RecipesCreationState extends State<RecipesCreation> {
   final PageController _pageController = PageController();
   int _currentPageIndex = 0;
@@ -38,7 +35,6 @@ class _RecipesCreationState extends State<RecipesCreation> {
   File? _image;
   bool _isButtonDisabled = false;
 
-  // Método para seleccionar una imagen
   Future<void> _pickImage() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -55,7 +51,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
       return;
     }
     switch (_currentPageIndex) {
-      case 1: // Página de detalles
+      case 1:
         if (_titleController.text.isEmpty ||
             _descriptionController.text.isEmpty) {
           return;
@@ -95,7 +91,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
         appBar: AppBar(
           title:
               const Text('Crear Receta', style: TextStyle(color: Colors.black)),
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.orange,
         ),
         body: PageView(
           controller: _pageController,
@@ -124,10 +120,8 @@ class _RecipesCreationState extends State<RecipesCreation> {
             _pageController.jumpToPage(index);
           },
           backgroundColor: Colors.green,
-          selectedItemColor:
-              Colors.black, // Color del ícono y label seleccionados
-          unselectedItemColor:
-              Colors.grey, // Color del ícono y label no seleccionados
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.photo),
@@ -142,7 +136,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
               label: 'Ingredientes',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.list), // Color del ícono
+              icon: Icon(Icons.list),
               label: 'Pasos',
             ),
           ],
@@ -156,6 +150,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
                           _isButtonDisabled = true;
                         });
                         await _addRecipe();
+                        // ignore: use_build_context_synchronously
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -165,7 +160,7 @@ class _RecipesCreationState extends State<RecipesCreation> {
                       },
                 child: const Text('Guardar'),
               )
-            : null, // El botón no se muestra si no estás en la página de pasos.
+            : null,
       ),
     );
   }
@@ -186,7 +181,7 @@ class _PhotoPageState extends State<PhotoPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200], // Cambiado a un color gris claro
+      color: Colors.grey[200],
       height: 200,
       alignment: Alignment.center,
       child: Column(
@@ -197,8 +192,7 @@ class _PhotoPageState extends State<PhotoPage> {
                   ? Image.network(_image!.path, height: 100, width: 100)
                   : Image.file(_image!, height: 100, width: 100)
               : const Text('Selecciona una foto',
-                  style: TextStyle(
-                      color: Colors.black)), // Añadido un estilo para el texto
+                  style: TextStyle(color: Colors.black)),
           ElevatedButton(
             onPressed: widget.onImagePicked,
             child: const Text('Seleccionar Foto'),
@@ -297,6 +291,7 @@ class IngredientsPage extends StatefulWidget {
       : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _IngredientsPageState createState() => _IngredientsPageState();
 }
 
@@ -305,14 +300,13 @@ class _IngredientsPageState extends State<IngredientsPage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: Colors.grey[200], // Cambiado a un color gris claro
+        color: Colors.grey[200],
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const _SectionTitle('Ingredientes',
-                  textColor: Colors.black), // Añadido el color del texto
+              const _SectionTitle('Ingredientes', textColor: Colors.black),
               const SizedBox(height: 16),
               for (int i = 0; i < widget.ingredientControllers.length; i++)
                 Column(
@@ -350,10 +344,10 @@ class _IngredientsPageState extends State<IngredientsPage> {
                     widget.ingredientControllers.add(TextEditingController());
                   });
                 },
-                child: const Text('Agregar Ingrediente'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.grey[300],
+                  backgroundColor: Colors.grey[300],
                 ),
+                child: const Text('Agregar Ingrediente'),
               ),
             ],
           ),
@@ -372,6 +366,7 @@ class StepsPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _StepsPageState createState() => _StepsPageState();
 }
 
@@ -458,7 +453,6 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
-// Widget principal de la aplicación
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 

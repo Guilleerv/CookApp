@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:cookapp/services/firebase_service.dart';
 
 class ViewRecetas extends StatefulWidget {
+  const ViewRecetas({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ViewRecetasState createState() => _ViewRecetasState();
 }
 
@@ -13,6 +16,7 @@ class _ViewRecetasState extends State<ViewRecetas> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Recetas'),
+        backgroundColor: Colors.orange,
       ),
       body: FutureBuilder(
         future: getRecetas(),
@@ -41,7 +45,6 @@ class _ViewRecetasState extends State<ViewRecetas> {
 
                 return GestureDetector(
                   onTap: () {
-                    // Navegar a la página de detalles con la receta seleccionada
                     Navigator.push(
                       context,
                       MaterialPageRoute(
