@@ -24,16 +24,13 @@ Una vez completado el proceso de ingreso de datos, la aplicación organizará es
 
 
 ## Diseño
+![Google Pixel 4 Presentation](https://github.com/Guilleerv/CookApp/assets/74439275/f9113fe4-1644-4945-955e-0efa3056ac39)
+![Google Pixel 4](https://github.com/Guilleerv/CookApp/assets/74439275/39968d56-5dc7-4d86-80da-8741c01a02fa)
+![Google Pixel 4 (1)](https://github.com/Guilleerv/CookApp/assets/74439275/469e8c97-a731-49a1-9f10-3a7527413172)
+![Google Pixel 4 (2)](https://github.com/Guilleerv/CookApp/assets/74439275/27ffaa0e-c2ba-48e4-8a67-fa2a01a26481)
+![Google Pixel 4 (3)](https://github.com/Guilleerv/CookApp/assets/74439275/1c81ba81-40cc-4404-a3bc-4b11704913dc)
 
-![Google Pixel 4 Presentation](https://github.com/Guilleerv/cookapp/assets/74439275/073b02d1-74cb-4be6-ae1b-b88e0fa268e6)
 
-![Google Pixel 4](https://github.com/Guilleerv/cookapp/assets/74439275/d90e45cb-9fb6-4039-a818-144e35ccba6a)
-
-![Google Pixel 4 (1)](https://github.com/Guilleerv/cookapp/assets/74439275/ebf91f01-f2a4-4d2d-9e6a-5a2d2489fe42)
-
-![Google Pixel 4 (2)](https://github.com/Guilleerv/cookapp/assets/74439275/da0ec983-fefd-44d9-bea5-5cc5227bb4c6)
-
-![Google Pixel 4 (3)](https://github.com/Guilleerv/cookapp/assets/74439275/4a0bfd20-3192-45f4-a684-5da082a4ea54)
 
 ## Arquitectura
 ### Estructura de Archivos Propuesta:
